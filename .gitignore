@@ -1,5 +1,6 @@
 enwiki-**
-data/**
-words*
+data/enwiki**
+data/passphrase-words.txt
+data/wordFreqs.txt
 *.py
 c/**
