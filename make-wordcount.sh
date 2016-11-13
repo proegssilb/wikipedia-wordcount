@@ -3,7 +3,7 @@
 grep -e '^[a-zA-Z]\{4,8\}$' data/words3.txt | tr '[:upper:]' '[:lower:]' | sort -u > data/passphrase-words.txt
 
 function wordfrequency() {
-  mawk '{ for (i=1; i<=NF; i++) { word = tolower($i); words[word]++ } } END { for (w in words) printf("%3d %s\n", words[w], w) } ' | sort -rn
+  sort | uniq -c | sort -rn
 }
 
 function getArticleText() {
