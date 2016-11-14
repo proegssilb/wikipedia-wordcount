@@ -7,11 +7,11 @@ function wordfrequency() {
 }
 
 function getArticleText() {
-  awk '/<text xml:space="preserve">/,/<\/text>/' | sed 's/<.*>//'
+  awk '/<text xml:space="preserve">/,/<\/text>/' | sed -e 's/&quot;/"/g' -e 's/&lt;/</g' -e 's/&gt;/>/g' -e 's/&amp;/&/g' -e 's/<.*>//g'
 }
 
 function reduceWikiText() {
-  tr ' [:punct:]' '[\n*]' | sed '/^$/d' | tr '[:upper:]' '[:lower:]'
+  tr -sc '[:alpha:]' '\n' | tr '[:upper:]' '[:lower:]'
 }
 
-bzcat data/enwiki-20161020-pages-articles.xml.bz2 | getArticleText | reduceWikiText | grep -F -f data/passphrase-words.txt | wordfrequency > data/wordFreqs.txt
+bzcat data/enwiki-20161020-pages-articles.xml.bz2 | getArticleText | reduceWikiText | grep -Fx -f data/passphrase-words.txt | wordfrequency > data/wordFreqs.txt
