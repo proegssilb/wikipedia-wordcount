@@ -1,6 +1,8 @@
 enwiki-**
 data/enwiki**
+data/badword*
+data/cardsWordList.txt
 data/passphrase-words.txt
 data/wordFreqs.txt
-*.py
+data/badwords.txt
 c/**
